@@ -3,5 +3,5 @@ import authReducer from './authReducer';
 
 export default combineReducers({
   auth: authReducer,
-  // dashboard: getUserDataReducer,
+  //   dashboard: null,
 });

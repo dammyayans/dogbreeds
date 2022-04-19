@@ -5,10 +5,10 @@ const userDataFromStorage = null;
 const preloadedState = {
   auth: {
     loading: false,
-    isAuth: userDataFromStorage ? true : false,
+    isAuth: !userDataFromStorage ? true : false,
     user: userDataFromStorage,
   },
-  dashboard: {},
+  //   dashboard: {},
 };
 
 const store = configureStore({reducer, preloadedState});
