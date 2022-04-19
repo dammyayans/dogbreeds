@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {View, TextInput as TI, ViewStyle, TextInputProps} from 'react-native';
 import tw from 'tailwind';
 import Feather from 'react-native-vector-icons/Feather';
@@ -19,6 +19,7 @@ const TextInput: FC<IProps> = ({
   iconRight,
   ...props
 }) => {
+  const [showPassword, setShowPassword] = useState(password);
   return (
     <View style={tw.style('h-[48px] items-center justify-center relative')}>
       <TI
@@ -67,13 +68,25 @@ const TextInput: FC<IProps> = ({
         )}
         autoComplete="off"
         autoCapitalize="none"
+        secureTextEntry={showPassword}
       />
       <View style={tw`absolute right-[16px]`}>
-        {variant === 'danger' && (
-          <Feather size={20} color="#E31B23" name="alert-circle" />
-        )}
-        {variant === 'success' && (
-          <Feather size={20} color="#1CB66C" name="check" />
+        {password ? (
+          <Feather
+            onPress={() => setShowPassword(pr => !pr)}
+            color="#323232"
+            size={20}
+            name={showPassword ? 'eye' : 'eye-off'}
+          />
+        ) : (
+          <>
+            {variant === 'danger' && (
+              <Feather size={20} color="#E31B23" name="alert-circle" />
+            )}
+            {variant === 'success' && (
+              <Feather size={20} color="#1CB66C" name="check" />
+            )}
+          </>
         )}
 
         {iconRight ? iconRight : null}

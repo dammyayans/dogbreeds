@@ -3,6 +3,8 @@ import React, {FC} from 'react';
 import tw from 'tailwind';
 import StyledText from 'components/StyledText';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Loader from 'components/Loader';
+import {View} from 'react-native-animatable';
 
 interface IButton {
   title?: string;
@@ -41,7 +43,9 @@ const Button: FC<IButton> = ({
           {children ? children : title}
         </StyledText>
       ) : (
-        <AntDesign name="loading1" size={24} color="#fff" />
+        <View style={tw`justify-center items-center`}>
+          <Loader color="#fff" />
+        </View>
       )}
     </TouchableOpacity>
   );

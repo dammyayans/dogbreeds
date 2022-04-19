@@ -5,18 +5,20 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import tw from 'tailwind';
 import * as Animatable from 'react-native-animatable';
 import StyledText from 'components/StyledText';
+import HomeScreen from 'screens/Dashboard/HomeScreen';
+import ProfileScreen from 'screens/Dashboard/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
-
-const NULL = () => null;
 
 const TabNavigation = () => {
   return (
     <Tab.Navigator
       initialRouteName={screens.home}
       screenOptions={{
-        headerShown: false,
         tabBarStyle: tw`pt-1 pb-3`,
+        headerTitleStyle: tw`text-2xl font-bold text-left pb-2 mx-3`,
+        headerTitleAlign: 'left',
+        headerStyle: tw`h-[120px]`,
       }}
       // tabBar={props => <TabsUI tabs={props.state.routes} {...props} />}
       // tabBar={props => <MyTabBar {...props} />}
@@ -44,7 +46,7 @@ const TabNavigation = () => {
           ),
           tabBarLabel: () => null,
         }}
-        component={NULL}
+        component={HomeScreen}
       />
 
       <Tab.Screen
@@ -70,7 +72,7 @@ const TabNavigation = () => {
           ),
           tabBarLabel: () => null,
         }}
-        component={NULL}
+        component={ProfileScreen}
       />
     </Tab.Navigator>
   );
