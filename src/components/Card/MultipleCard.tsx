@@ -4,12 +4,14 @@ import {ViewStyle, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import StyledText from 'components/StyledText';
 import Card from './Card';
+import {useAppSelector} from 'store/hooks';
 
 interface ICard {
   style?: ViewStyle;
   name: string;
   subbreed: [];
   isFavourite: boolean;
+  onPress: () => void;
 }
 
 const MultipleCard: FC<ICard> = ({
@@ -17,12 +19,13 @@ const MultipleCard: FC<ICard> = ({
   name,
   subbreed,
   isFavourite,
-  ...props
+  onPress,
 }) => {
+  const favorites = useAppSelector(data => data.dashboard.favorites);
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      {...props}
+      onPress={onPress}
       style={tw.style(
         'bg-white rounded-lg border border-[#ECF1F4] p-4 p-4 mb-4',
         'shadow-offset-[2px] p-5 elevation-2',
@@ -50,7 +53,12 @@ const MultipleCard: FC<ICard> = ({
       </StyledText>
       <View style={tw`flex-row justify-between flex-wrap`}>
         {subbreed.map((breed, i) => (
-          <Card key={i} style={tw`w-[47%]`} name={breed} />
+          <Card
+            key={i}
+            style={tw`w-[47%]`}
+            isFavourite={favorites.includes(`${name}-${breed}`)}
+            name={breed}
+          />
         ))}
       </View>
     </TouchableOpacity>

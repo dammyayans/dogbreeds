@@ -4,33 +4,13 @@ import StyledText from 'components/StyledText';
 import tw from 'tailwind';
 import LoadableImage from 'components/LoadableImage';
 import {hp} from 'utils/responsive';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useAppDispatch, useAppSelector} from 'store/hooks';
 import {
   clearBreedInfo,
   getBreedImage,
   getSubBreedImages,
-  updateFavorite,
 } from 'store/actions/dashboardActions';
-
-const FavouriteButton = ({isFavourite = false, name}) => {
-  const dispatch = useAppDispatch();
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        dispatch(updateFavorite(isFavourite ? 'remove' : 'add', name));
-      }}
-      activeOpacity={0.8}
-      style={tw`flex-row p-2 items-center`}>
-      <StyledText style={tw`mr-1`}>{isFavourite ? 'Remove' : 'Add'}</StyledText>
-      <Icon
-        name={isFavourite ? 'star' : 'star-outline'}
-        style={tw`text-[#f3aa4e]`}
-        size={14}
-      />
-    </TouchableOpacity>
-  );
-};
+import FavouriteButton from 'components/FavouriteButton';
 
 const BreedDetails = ({route}) => {
   const breedName = route.params?.breed;
@@ -84,8 +64,8 @@ const BreedDetails = ({route}) => {
                     {breed}
                   </StyledText>
                   <FavouriteButton
-                    isFavourite={favorites.includes(breed)}
-                    name={breed}
+                    isFavourite={favorites.includes(`${breedName}-${breed}`)}
+                    name={`${breedName}-${breed}`}
                   />
                 </View>
               </View>

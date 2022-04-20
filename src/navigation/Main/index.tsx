@@ -20,12 +20,7 @@ export const HeaderLeft = HeaderBackButtonProps => (
 const MainStack = () => {
   return (
     <>
-      <Stack.Navigator
-        screenOptions={
-          {
-            // headerShown: false,
-          }
-        }>
+      <Stack.Navigator>
         <Stack.Screen
           name={screens.dashboard}
           component={TabNavigation}

@@ -1,10 +1,9 @@
-import {TextStyle, TouchableOpacity, ViewStyle} from 'react-native';
+import {TextStyle, TouchableOpacity, ViewStyle, View} from 'react-native';
 import React, {FC} from 'react';
 import tw from 'tailwind';
 import StyledText from 'components/StyledText';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+// import AntDesign from 'react-native-vector-icons/AntDesign';
 import Loader from 'components/Loader';
-import {View} from 'react-native-animatable';
 
 interface IButton {
   title?: string;

@@ -8,6 +8,7 @@ const API = {
     `${BASE_URL}/api/breed/${name}/images/random`,
   getSubBreedImage: (name: string, subbreed) =>
     `${BASE_URL}/api/breed/${name}/${subbreed}/images/random`,
+  getRandomImage: `${BASE_URL}/api/breeds/image/random`,
 };
 
 /*
@@ -79,3 +80,24 @@ export function postLogin(userData) {
     setTimeout(() => resolve({data: userData}), 2000),
   );
 }
+
+/*
+ * Get Random Breed Request
+ */
+export const getRandomBreed: any = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data, error} = await Axios({
+        method: 'GET',
+        url: API.getRandomImage,
+      });
+      if (data) {
+        resolve(data);
+      } else {
+        reject(error);
+      }
+    } catch (ex) {
+      reject(ex);
+    }
+  });
+};

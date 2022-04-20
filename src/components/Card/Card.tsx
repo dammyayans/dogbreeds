@@ -1,23 +1,23 @@
 import {TouchableOpacity} from 'react-native';
 import React, {FC} from 'react';
 import tw from 'tailwind';
-import {ViewStyle} from 'react-native';
+import {ViewStyle, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import StyledText from 'components/StyledText';
-import {View} from 'react-native-animatable';
 
 interface ICard {
   style?: ViewStyle;
   name: string;
   isFavourite?: boolean;
+  onPress?: () => void;
   // mainBreed: string;
 }
 
-const Card: FC<ICard> = ({style, name, isFavourite, ...props}) => {
+const Card: FC<ICard> = ({style, name, isFavourite, onPress}) => {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      {...props}
+      onPress={onPress}
       style={tw.style(
         'bg-white rounded-lg border border-[#ECF1F4] py-4 px-2 flex-row mb-4 relative',
         'shadow-offset-[2px] elevation-2',

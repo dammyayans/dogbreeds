@@ -1,4 +1,8 @@
-import {LOGIN_REQUEST, LOGIN_SUCCESS} from 'store/actionTypes/authTypes';
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGOUT,
+} from 'store/actionTypes/authTypes';
 import {postLogin} from 'utils/api';
 import Toast from 'react-native-toast-message';
 
@@ -21,5 +25,11 @@ export const loginUser = userData => {
         });
       }
     }
+  };
+};
+
+export const logoutUser = () => {
+  return dispatch => {
+    dispatch({type: LOGOUT});
   };
 };

@@ -1,3 +1,4 @@
+import {AxiosError} from 'axios';
 import Toast from 'react-native-toast-message';
 import {
   ALL_BREEDS_REQUEST,
@@ -27,7 +28,8 @@ export const getBreeds = () => {
         type: ALL_BREEDS_SUCCESS,
         payload: newRes ? [...Object.entries(newRes)] : [],
       });
-    } catch (ex: any) {
+    } catch (_ex) {
+      const ex = _ex as AxiosError;
       if (ex.response) {
         Toast.show({
           type: 'danger',
@@ -68,7 +70,8 @@ export const getBreedImage = (name: string) => {
         type: BREED_IMAGE_SUCCESS,
         payload: res?.message,
       });
-    } catch (ex: any) {
+    } catch (_ex) {
+      const ex = _ex as AxiosError;
       if (ex.response) {
         Toast.show({
           type: 'danger',
@@ -100,7 +103,8 @@ export const getSubBreedImages = (name: string, subbreeds: string[]) => {
           payload: res,
         });
       });
-    } catch (ex: any) {
+    } catch (_ex) {
+      const ex = _ex as AxiosError;
       if (ex.response) {
         Toast.show({
           type: 'danger',

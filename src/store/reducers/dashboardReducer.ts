@@ -49,7 +49,10 @@ export const homeReducer = (state = initialState, action) => {
     case CLEAR_FILTER:
       return {...state, filteredBreeds: null};
     case ADD_TO_FAVORITE:
-      return {...state, favorites: [...state.favorites, action.payload]};
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload?.toLowerCase()],
+      };
     case REMOVE_FROM_FAVORITE:
       return {
         ...state,

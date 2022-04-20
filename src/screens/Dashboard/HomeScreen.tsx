@@ -42,14 +42,14 @@ const HomeScreen = ({navigation}) => {
             subbreed: item[1],
           })
         }
-        isFavourite={dashboard.favorites.includes(item[0])}
+        isFavourite={dashboard.favorites.includes(item[0].toLowerCase())}
         subbreed={item[1]}
         style={tw`w-full`}
         name={item[0]}
       />
     ) : (
       <Card
-        isFavourite={dashboard.favorites.includes(item[0])}
+        isFavourite={dashboard.favorites.includes(item[0].toLowerCase())}
         onPress={() => navigation.navigate(screens.breedInfo, {breed: item[0]})}
         style={tw`w-[47%]`}
         name={item[0]}

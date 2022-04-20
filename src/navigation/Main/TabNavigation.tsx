@@ -7,7 +7,20 @@ import * as Animatable from 'react-native-animatable';
 import StyledText from 'components/StyledText';
 import HomeScreen from 'screens/Dashboard/HomeScreen';
 import ProfileScreen from 'screens/Dashboard/ProfileScreen';
+import {Pressable} from 'react-native';
+import {useAppDispatch} from 'store/hooks';
+import {logoutUser} from 'store/actions/authActions';
 
+const HeaderRight = () => {
+  const dispatch = useAppDispatch();
+  return (
+    <Pressable style={tw`mr-6`} onPress={() => dispatch(logoutUser())}>
+      <StyledText style={tw`text-primary font-semibold text-base`}>
+        Sign Out
+      </StyledText>
+    </Pressable>
+  );
+};
 const Tab = createBottomTabNavigator();
 
 const TabNavigation = () => {
@@ -71,6 +84,7 @@ const TabNavigation = () => {
             </Animatable.View>
           ),
           tabBarLabel: () => null,
+          headerRight: HeaderRight,
         }}
         component={ProfileScreen}
       />
